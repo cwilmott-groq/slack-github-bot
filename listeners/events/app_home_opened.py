@@ -48,7 +48,7 @@ def app_home_opened_callback(event: dict, logger: Logger, client: WebClient):
                 "blocks": [
                     {
                         "type": "header",
-                        "text": {"type": "plain_text", "text": "Welcome to Bolty's Home Page!", "emoji": True},
+                        "text": {"type": "plain_text", "text": "Welcome to Groq Chat's Home Page!", "emoji": True},
                     },
                     {"type": "divider"},
                     {

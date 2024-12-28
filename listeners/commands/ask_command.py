@@ -4,7 +4,7 @@ from ai.providers import get_provider_response
 from slack_sdk import WebClient
 
 """
-Callback for handling the 'ask-bolty' command. It acknowledges the command, retrieves the user's ID and prompt,
+Callback for handling the 'ask-groq' command. It acknowledges the command, retrieves the user's ID and prompt,
 checks if the prompt is empty, and responds with either an error message or the provider's response.
 """
 
@@ -42,4 +42,4 @@ def ask_callback(client: WebClient, ack: Ack, command, say: Say, logger: Logger,
             )
     except Exception as e:
         logger.error(e)
-        client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Received an error from Bolty:\n{e}")
+        client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Received an error from Groq Chat:\n{e}")

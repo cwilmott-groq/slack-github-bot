@@ -1,0 +1,24 @@
+services:
+  webhook:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=redis
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    depends_on:
+      - redis
+  
+  queue_consumer:
+    build: .
+    command: python queue_consumer.py
+    environment:
+      - REDIS_HOST=redis
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    depends_on:
+      - redis
+  
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"

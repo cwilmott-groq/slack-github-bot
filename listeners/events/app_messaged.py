@@ -13,6 +13,7 @@ and generates an AI response.
 
 
 def app_messaged_callback(client: WebClient, event: dict, logger: Logger, say: Say):
+    print("Event - app_messaged.py: ", event)
     channel_id = event.get("channel")
     thread_ts = event.get("thread_ts")
     user_id = event.get("user")
@@ -31,4 +32,4 @@ def app_messaged_callback(client: WebClient, event: dict, logger: Logger, say: S
             client.chat_update(channel=channel_id, ts=waiting_message["ts"], text=response)
     except Exception as e:
         logger.error(e)
-        client.chat_update(channel=channel_id, ts=waiting_message["ts"], text=f"Received an error from Bolty:\n{e}")
+        client.chat_update(channel=channel_id, ts=waiting_message["ts"], text=f"Received an error from Groq Chat:\n{e}")
