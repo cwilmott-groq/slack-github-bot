@@ -1,0 +1,277 @@
+{
+  "name": "root",
+  "value": 74187,
+  "children": [
+    {
+      "name": "neutrino_request.json",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/neutrino_request.json",
+      "value": 80,
+      "children": []
+    },
+    {
+      "name": "bin",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin",
+      "value": 520,
+      "children": [
+        {
+          "name": "README.hermit.md",
+          "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin/README.hermit.md",
+          "value": 62,
+          "children": []
+        },
+        {
+          "name": "git-credential-gcloud.sh",
+          "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin/git-credential-gcloud.sh",
+          "value": 458,
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "CHANGELOG.md.part1",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md",
+      "value": 3277,
+      "children": []
+    },
+    {
+      "name": "CHANGELOG.md.part2",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md",
+      "value": 3277,
+      "children": []
+    },
+    {
+      "name": "CHANGELOG.md.part3",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md",
+      "value": 3277,
+      "children": []
+    },
+    {
+      "name": "CHANGELOG.md.part4",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md",
+      "value": 3277,
+      "children": []
+    },
+    {
+      "name": "CHANGELOG.md.part5",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md",
+      "value": 3281,
+      "children": []
+    },
+    {
+      "name": "README.md",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/README.md",
+      "value": 977,
+      "children": []
+    },
+    {
+      "name": "dummy.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/dummy.rs",
+      "value": 53,
+      "children": []
+    },
+    {
+      "name": "buf.gen.yaml",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/buf.gen.yaml",
+      "value": 146,
+      "children": []
+    },
+    {
+      "name": "compose.yaml",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/compose.yaml",
+      "value": 832,
+      "children": []
+    },
+    {
+      "name": "verifier_test.go.part1",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/verifier_test.go",
+      "value": 2663,
+      "children": []
+    },
+    {
+      "name": "verifier_test.go.part2",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/verifier_test.go",
+      "value": 2664,
+      "children": []
+    },
+    {
+      "name": "neutrino.go",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/neutrino.go",
+      "value": 1031,
+      "children": []
+    },
+    {
+      "name": "gen_keys.sh",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/gen_keys.sh",
+      "value": 375,
+      "children": []
+    },
+    {
+      "name": "SECURITY.md",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/SECURITY.md",
+      "value": 118,
+      "children": []
+    },
+    {
+      "name": "proxy.rs.part1",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/proxy.rs",
+      "value": 2512,
+      "children": []
+    },
+    {
+      "name": "proxy.rs.part2",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/proxy.rs",
+      "value": 2512,
+      "children": []
+    },
+    {
+      "name": "comparators.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/comparators.rs",
+      "value": 801,
+      "children": []
+    },
+    {
+      "name": "neutrino_data.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/neutrino_data.rs",
+      "value": 966,
+      "children": []
+    },
+    {
+      "name": "neutrino_lb.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/neutrino_lb.rs",
+      "value": 1481,
+      "children": []
+    },
+    {
+      "name": "routing_algorithms.rs.part1",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/routing_algorithms.rs",
+      "value": 2766,
+      "children": []
+    },
+    {
+      "name": "routing_algorithms.rs.part2",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/routing_algorithms.rs",
+      "value": 2767,
+      "children": []
+    },
+    {
+      "name": "config.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/config.rs",
+      "value": 2344,
+      "children": []
+    },
+    {
+      "name": "lib.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lib.rs",
+      "value": 35,
+      "children": []
+    },
+    {
+      "name": "server.rs.part1",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs",
+      "value": 3019,
+      "children": []
+    },
+    {
+      "name": "server.rs.part2",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs",
+      "value": 3019,
+      "children": []
+    },
+    {
+      "name": "server.rs.part3",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs",
+      "value": 3020,
+      "children": []
+    },
+    {
+      "name": "tracing.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/tracing.rs",
+      "value": 1193,
+      "children": []
+    },
+    {
+      "name": "metrics.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/metrics.rs",
+      "value": 969,
+      "children": []
+    },
+    {
+      "name": "neutrino_sim.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/neutrino_sim.rs",
+      "value": 3128,
+      "children": []
+    },
+    {
+      "name": "client_sim.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/client_sim.rs",
+      "value": 877,
+      "children": []
+    },
+    {
+      "name": "config.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/config.rs",
+      "value": 998,
+      "children": []
+    },
+    {
+      "name": "sombrero_sim.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sombrero_sim.rs",
+      "value": 1342,
+      "children": []
+    },
+    {
+      "name": "sim_stats.rs.part1",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sim_stats.rs",
+      "value": 3106,
+      "children": []
+    },
+    {
+      "name": "sim_stats.rs.part2",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sim_stats.rs",
+      "value": 3107,
+      "children": []
+    },
+    {
+      "name": "rand.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/rand.rs",
+      "value": 887,
+      "children": []
+    },
+    {
+      "name": "headers.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/headers.rs",
+      "value": 1078,
+      "children": []
+    },
+    {
+      "name": "main.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/main.rs",
+      "value": 1378,
+      "children": []
+    },
+    {
+      "name": "simulator.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator.rs",
+      "value": 544,
+      "children": []
+    },
+    {
+      "name": "load_balancing.rs",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing.rs",
+      "value": 159,
+      "children": []
+    },
+    {
+      "name": "lb_sim.rs.part1",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lb_sim.rs",
+      "value": 2165,
+      "children": []
+    },
+    {
+      "name": "lb_sim.rs.part2",
+      "path": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lb_sim.rs",
+      "value": 2166,
+      "children": []
+    }
+  ]
+}

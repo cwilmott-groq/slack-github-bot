@@ -1,0 +1,172 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#e52d2d", "font": {"color": "black"}, "id": "root", "label": "root", "shape": "dot", "size": 56.07178845504588, "title": "root\nSize: 74187", "value": 74187}, {"color": "#2d77e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/neutrino_request.json__neutrino_request.json", "label": "neutrino_request.json", "shape": "dot", "size": 21.972245773362197, "title": "neutrino_request.json\nSize: 80", "value": 80}, {"color": "#2d7be5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin__bin", "label": "bin", "shape": "dot", "size": 31.278750208766834, "title": "bin\nSize: 520", "value": 520}, {"color": "#2d77e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin/README.hermit.md__README.hermit.md", "label": "README.hermit.md", "shape": "dot", "size": 20.715673631957664, "title": "README.hermit.md\nSize: 62", "value": 62}, {"color": "#2d7be5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin/git-credential-gcloud.sh__git-credential-gcloud.sh", "label": "git-credential-gcloud.sh", "shape": "dot", "size": 30.645251050302726, "title": "git-credential-gcloud.sh\nSize: 458", "value": 458}, {"color": "#2d94e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part1", "label": "CHANGELOG.md.part1", "shape": "dot", "size": 40.47494379651887, "title": "CHANGELOG.md.part1\nSize: 3277", "value": 3277}, {"color": "#2d94e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part2", "label": "CHANGELOG.md.part2", "shape": "dot", "size": 40.47494379651887, "title": "CHANGELOG.md.part2\nSize: 3277", "value": 3277}, {"color": "#2d94e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part3", "label": "CHANGELOG.md.part3", "shape": "dot", "size": 40.47494379651887, "title": "CHANGELOG.md.part3\nSize: 3277", "value": 3277}, {"color": "#2d94e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part4", "label": "CHANGELOG.md.part4", "shape": "dot", "size": 40.47494379651887, "title": "CHANGELOG.md.part4\nSize: 3277", "value": 3277}, {"color": "#2d94e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part5", "label": "CHANGELOG.md.part5", "shape": "dot", "size": 40.48104135825018, "title": "CHANGELOG.md.part5\nSize: 3281", "value": 3281}, {"color": "#2d7fe5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/README.md__README.md", "label": "README.md", "shape": "dot", "size": 34.42754835017409, "title": "README.md\nSize: 977", "value": 977}, {"color": "#2d77e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/dummy.rs__dummy.rs", "label": "dummy.rs", "shape": "dot", "size": 19.944920232821374, "title": "dummy.rs\nSize: 53", "value": 53}, {"color": "#2d78e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/buf.gen.yaml__buf.gen.yaml", "label": "buf.gen.yaml", "shape": "dot", "size": 24.952162933893682, "title": "buf.gen.yaml\nSize: 146", "value": 146}, {"color": "#2d7ee5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/compose.yaml__compose.yaml", "label": "compose.yaml", "shape": "dot", "size": 33.62516821083422, "title": "compose.yaml\nSize: 832", "value": 832}, {"color": "#2d8ee5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/verifier_test.go__verifier_test.go.part1", "label": "verifier_test.go.part1", "shape": "dot", "size": 39.4379201583014, "title": "verifier_test.go.part1\nSize: 2663", "value": 2663}, {"color": "#2d8ee5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/verifier_test.go__verifier_test.go.part2", "label": "verifier_test.go.part2", "shape": "dot", "size": 39.43979668299973, "title": "verifier_test.go.part2\nSize: 2664", "value": 2664}, {"color": "#2d80e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/neutrino.go__neutrino.go", "label": "neutrino.go", "shape": "dot", "size": 34.69626973020754, "title": "neutrino.go\nSize: 1031", "value": 1031}, {"color": "#2d7ae5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/gen_keys.sh__gen_keys.sh", "label": "gen_keys.sh", "shape": "dot", "size": 29.647945716949472, "title": "gen_keys.sh\nSize: 375", "value": 375}, {"color": "#2d78e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/SECURITY.md__SECURITY.md", "label": "SECURITY.md", "shape": "dot", "size": 23.89561746555765, "title": "SECURITY.md\nSize: 118", "value": 118}, {"color": "#2d8de5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/proxy.rs__proxy.rs.part1", "label": "proxy.rs.part1", "shape": "dot", "size": 39.14616268771796, "title": "proxy.rs.part1\nSize: 2512", "value": 2512}, {"color": "#2d8de5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/proxy.rs__proxy.rs.part2", "label": "proxy.rs.part2", "shape": "dot", "size": 39.14616268771796, "title": "proxy.rs.part2\nSize: 2512", "value": 2512}, {"color": "#2d7ee5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/comparators.rs__comparators.rs", "label": "comparators.rs", "shape": "dot", "size": 33.43554303933257, "title": "comparators.rs\nSize: 801", "value": 801}, {"color": "#2d7fe5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/neutrino_data.rs__neutrino_data.rs", "label": "neutrino_data.rs", "shape": "dot", "size": 34.37099247726647, "title": "neutrino_data.rs\nSize: 966", "value": 966}, {"color": "#2d84e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/neutrino_lb.rs__neutrino_lb.rs", "label": "neutrino_lb.rs", "shape": "dot", "size": 36.50573902928016, "title": "neutrino_lb.rs\nSize: 1481", "value": 1481}, {"color": "#2d8fe5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/routing_algorithms.rs__routing_algorithms.rs.part1", "label": "routing_algorithms.rs.part1", "shape": "dot", "size": 39.62759489893463, "title": "routing_algorithms.rs.part1\nSize: 2766", "value": 2766}, {"color": "#2d8fe5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/routing_algorithms.rs__routing_algorithms.rs.part2", "label": "routing_algorithms.rs.part2", "shape": "dot", "size": 39.6294015836878, "title": "routing_algorithms.rs.part2\nSize: 2767", "value": 2767}, {"color": "#2d8be5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/config.rs__config.rs", "label": "config.rs", "shape": "dot", "size": 38.8002034044019, "title": "config.rs\nSize: 2344", "value": 2344}, {"color": "#2d77e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lib.rs__lib.rs", "label": "lib.rs", "shape": "dot", "size": 17.91759469228055, "title": "lib.rs\nSize: 35", "value": 35}, {"color": "#2d91e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs__server.rs.part1", "label": "server.rs.part1", "shape": "dot", "size": 40.06506055184458, "title": "server.rs.part1\nSize: 3019", "value": 3019}, {"color": "#2d91e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs__server.rs.part2", "label": "server.rs.part2", "shape": "dot", "size": 40.06506055184458, "title": "server.rs.part2\nSize: 3019", "value": 3019}, {"color": "#2d91e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs__server.rs.part3", "label": "server.rs.part3", "shape": "dot", "size": 40.06671590693336, "title": "server.rs.part3\nSize: 3020", "value": 3020}, {"color": "#2d81e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/tracing.rs__tracing.rs", "label": "tracing.rs", "shape": "dot", "size": 35.425321469762736, "title": "tracing.rs\nSize: 1193", "value": 1193}, {"color": "#2d7fe5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/metrics.rs__metrics.rs", "label": "metrics.rs", "shape": "dot", "size": 34.386480357487144, "title": "metrics.rs\nSize: 969", "value": 969}, {"color": "#2d92e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/neutrino_sim.rs__neutrino_sim.rs", "label": "neutrino_sim.rs", "shape": "dot", "size": 40.242343718344415, "title": "neutrino_sim.rs\nSize: 3128", "value": 3128}, {"color": "#2d7ee5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/client_sim.rs__client_sim.rs", "label": "client_sim.rs", "shape": "dot", "size": 33.888232968175586, "title": "client_sim.rs\nSize: 877", "value": 877}, {"color": "#2d7fe5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/config.rs__config.rs", "label": "config.rs", "shape": "dot", "size": 34.53377389324277, "title": "config.rs\nSize: 998", "value": 998}, {"color": "#2d82e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sombrero_sim.rs__sombrero_sim.rs", "label": "sombrero_sim.rs", "shape": "dot", "size": 36.01330598261619, "title": "sombrero_sim.rs\nSize: 1342", "value": 1342}, {"color": "#2d92e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sim_stats.rs__sim_stats.rs.part1", "label": "sim_stats.rs.part1", "shape": "dot", "size": 40.207064546965235, "title": "sim_stats.rs.part1\nSize: 3106", "value": 3106}, {"color": "#2d92e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sim_stats.rs__sim_stats.rs.part2", "label": "sim_stats.rs.part2", "shape": "dot", "size": 40.208673557437685, "title": "sim_stats.rs.part2\nSize: 3107", "value": 3107}, {"color": "#2d7ee5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/rand.rs__rand.rs", "label": "rand.rs", "shape": "dot", "size": 33.94485871496085, "title": "rand.rs\nSize: 887", "value": 887}, {"color": "#2d80e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/headers.rs__headers.rs", "label": "headers.rs", "shape": "dot", "size": 34.91894982629067, "title": "headers.rs\nSize: 1078", "value": 1078}, {"color": "#2d83e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/main.rs__main.rs", "label": "main.rs", "shape": "dot", "size": 36.14556938896651, "title": "main.rs\nSize: 1378", "value": 1378}, {"color": "#2d7be5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator.rs__simulator.rs", "label": "simulator.rs", "shape": "dot", "size": 31.50392897331622, "title": "simulator.rs\nSize: 544", "value": 544}, {"color": "#2d78e5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing.rs__load_balancing.rs", "label": "load_balancing.rs", "shape": "dot", "size": 25.37586907616913, "title": "load_balancing.rs\nSize: 159", "value": 159}, {"color": "#2d8ae5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lb_sim.rs__lb_sim.rs.part1", "label": "lb_sim.rs.part1", "shape": "dot", "size": 38.40318713780468, "title": "lb_sim.rs.part1\nSize: 2165", "value": 2165}, {"color": "#2d8ae5", "font": {"color": "black"}, "id": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lb_sim.rs__lb_sim.rs.part2", "label": "lb_sim.rs.part2", "shape": "dot", "size": 38.40549500768179, "title": "lb_sim.rs.part2\nSize: 2166", "value": 2166}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/neutrino_request.json__neutrino_request.json"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin__bin"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part1"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part2"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part3"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part4"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/CHANGELOG.md__CHANGELOG.md.part5"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/README.md__README.md"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/dummy.rs__dummy.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/buf.gen.yaml__buf.gen.yaml"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/compose.yaml__compose.yaml"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/verifier_test.go__verifier_test.go.part1"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/verifier_test.go__verifier_test.go.part2"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/verifier/neutrino.go__neutrino.go"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/gen_keys.sh__gen_keys.sh"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/SECURITY.md__SECURITY.md"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/proxy.rs__proxy.rs.part1"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/proxy.rs__proxy.rs.part2"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/comparators.rs__comparators.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/neutrino_data.rs__neutrino_data.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/neutrino_lb.rs__neutrino_lb.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/routing_algorithms.rs__routing_algorithms.rs.part1"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing/routing_algorithms.rs__routing_algorithms.rs.part2"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/config.rs__config.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lib.rs__lib.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs__server.rs.part1"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs__server.rs.part2"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/server.rs__server.rs.part3"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/tracing.rs__tracing.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/metrics.rs__metrics.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/neutrino_sim.rs__neutrino_sim.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/client_sim.rs__client_sim.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/config.rs__config.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sombrero_sim.rs__sombrero_sim.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sim_stats.rs__sim_stats.rs.part1"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/sim_stats.rs__sim_stats.rs.part2"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator/rand.rs__rand.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/headers.rs__headers.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/main.rs__main.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/simulator.rs__simulator.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/load_balancing.rs__load_balancing.rs"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lb_sim.rs__lb_sim.rs.part1"}, {"arrows": "to", "from": "root", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/src/lb_sim.rs__lb_sim.rs.part2"}, {"arrows": "to", "from": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin__bin", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin/README.hermit.md__README.hermit.md"}, {"arrows": "to", "from": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin__bin", "to": "/Users/calwilmott/Desktop/Projects/groq-slack-python-ai-chatbot/qdrant_tools/repo_cache/sombrero/bin/git-credential-gcloud.sh__git-credential-gcloud.sh"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": "#888888",
+        "smooth": {
+            "forceDirection": "horizontal",
+            "type": "cubicBezier"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "dragView": true,
+        "zoomView": true
+    },
+    "layout": {
+        "hierarchical": {
+            "blockShifting": true,
+            "direction": "LR",
+            "edgeMinimization": true,
+            "enabled": true,
+            "levelSeparation": 250,
+            "nodeSpacing": 100,
+            "parentCentralization": true,
+            "sortMethod": "directed"
+        }
+    },
+    "physics": {
+        "enabled": true,
+        "hierarchicalRepulsion": {
+            "centralGravity": 0.5,
+            "damping": 0.09,
+            "nodeDistance": 200,
+            "springConstant": 0.02,
+            "springLength": 200
+        },
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

@@ -45,4 +45,4 @@ data/*
 # github data
 qdrant_tools/*
 analysis_checkpoint.csv
-./testbed.ipynb
+testbed/

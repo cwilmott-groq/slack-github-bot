@@ -11,7 +11,7 @@ from ..tools.base_tools import (
     WolframTool,
     ExaSearchTool,
 )
-from ..tools.slack_tools import (
+from ..tools.scheduling_tools import (
     SLACK_TOOLS,
     schedule_reminder,
     cancel_reminder,
@@ -23,7 +23,23 @@ from ..tools.qdrant_tools import (
     CodeSearchTool,
     search_code
 )
+from ..tools.summarization_tools import (
+    SUMMARIZATION_TOOLS,
+    SlackSummarizationTool,
+    retrieve_conversation_history
+)
 
+from ..tools.text_to_sql_tools import (
+    SQL_GENERATION_TOOLS,
+    generate_and_execute_query,
+    SQLQueryGenerationTool
+)
+from ..tools.chart_tools import (
+    FINAL_RESPONSE_TOOLS,
+    create_chart_from_data,
+    ChartTool,
+    summarize_data
+)
 logging.basicConfig(level=logging.INFO)  # Changed to INFO for better debugging
 logger = logging.getLogger(__name__)
 
@@ -48,6 +64,9 @@ class GroqAPI(BaseAPIProvider):
             self.search_tool = ExaSearchTool()
             self.slack_tool = SlackSchedulerTool()
             self.code_search_tool = CodeSearchTool()
+            self.summarization_tool = SlackSummarizationTool()
+            self.sql_tool = SQLQueryGenerationTool()
+            self.chart_tool = ChartTool()
         except Exception as e:
             logger.error(f"Error initializing tools: {e}")
             raise
@@ -63,7 +82,7 @@ class GroqAPI(BaseAPIProvider):
         else:
             return {}
 
-    def generate_response(self, prompt: str, system_content: str, metadata: dict = None) -> str:
+    def generate_response(self, prompt: str, system_content: str, metadata: dict = None) -> tuple[str, dict]:
         """
         Generate a response using the Groq API.
         
@@ -92,8 +111,8 @@ class GroqAPI(BaseAPIProvider):
             ]
 
             # Combine all available tools
-            all_tools = AVAILABLE_TOOLS + SLACK_TOOLS + CODE_SEARCH_TOOLS
-
+            all_tools = AVAILABLE_TOOLS + SLACK_TOOLS + CODE_SEARCH_TOOLS + SUMMARIZATION_TOOLS + SQL_GENERATION_TOOLS
+            # In case we don't need to create a chart, we don't need to pass blocks
             # First API call with tools
             response = self.client.chat.completions.create(
                 model=self.current_model,
@@ -115,13 +134,16 @@ class GroqAPI(BaseAPIProvider):
                     "web_search": web_search,
                     "schedule_reminder": schedule_reminder,
                     "cancel_reminder": cancel_reminder,
-                    "search_code": search_code
+                    "search_code": search_code,
+                    "retrieve_conversation_history": retrieve_conversation_history,
+                    "generate_and_execute_query": generate_and_execute_query
                 }
 
                 messages.append(response_message)
 
                 # Process each tool call
                 for tool_call in tool_calls:
+                    print("tool_call: ", tool_call)
                     function_name = tool_call.function.name
                     if function_name not in available_functions:
                         logger.error(f"Unknown function called: {function_name}")
@@ -189,7 +211,18 @@ class GroqAPI(BaseAPIProvider):
                         print("search_code response: ", function_response)
                         new_prompt = f"Here is the code search result: {function_response}. Please provide a summary of the code and any relevant information. Cite your sources using the following format: <https://github.com/org/repo/blob/branch/path#Lstart-Lend|$DocumentName>."
                         print(new_prompt)
-
+                    elif function_name == "retrieve_conversation_history":
+                        function_response = function_to_call(
+                            channel_name=function_args.get("channel_name")
+                        )
+                        new_prompt = f"Here is the Slack channel conversation: {function_response}. Please provide a summary of the conversation and any relevant information. Ensure you follow slack-specific formatting rules, such as single asterisks for bold text, and <http://example.com|Custom Text> for links. User IDs, which look like U012AB3CD|@username, should be formatted as <@UserID>. Do not include any additional formatting or markdown, or any additional instructions or content beyond the conversation summary."
+                    elif function_name == "generate_and_execute_query":
+                        function_response = function_to_call(
+                            question=function_args.get("question")
+                        )
+                        print("function_response: ", function_response)
+                        new_prompt = f"Here is the SQL query result: {function_response}. Please provide a summary of the results and any relevant information."
+    
                     # Add the tool response to messages for non-reminder functions
                     messages.append({
                         "tool_call_id": tool_call.id,
@@ -198,15 +231,17 @@ class GroqAPI(BaseAPIProvider):
                         "content": str(new_prompt),
                     })
 
+
+                
                 # Make a second API call with the tool responses
-                second_response = self.client.chat.completions.create(
+                response_message = self.client.chat.completions.create(
                     model=self.current_model,
                     messages=messages,
                     max_tokens=self.MODELS[self.current_model]["max_tokens"],
-                )
-                return second_response.choices[0].message.content
 
-            return response_message.content
+                )
+
+            return response_message.choices[0].message.content
 
         except groq.APIConnectionError as e:
             logger.error(f"Server could not be reached: {e.__cause__}")
