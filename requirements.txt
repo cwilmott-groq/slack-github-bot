@@ -5,7 +5,7 @@ black==24.10.0
 slack-cli-hooks==0.0.3
 openai==1.56.0
 anthropic==0.40.0
-google-cloud-aiplatform==1.73.0
+google-cloud-aiplatform==1.79.0
 groq==0.13.1
 wolframalpha==5.1.3
 qdrant-client==1.12.1
